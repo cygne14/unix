@@ -1,0 +1,14 @@
+1. Protože příkaz shift funguje jen když N (posunutí o N pozic) je menší nebo
+   rovno počtu argumentů a v posledním případě tam zbyly jen 2, tedy shift 
+   nemohl posunout o 3.
+
+2. a) $#: V proměnné $# je uložen počet argumentů.
+   b) ${promenna}: Délka proměnné $promenna.
+   c) ${!premenna}: Vypíše obsah proměnné, jejíž název je uložen v $premenna.
+   d) ${promenna:-vyraz}: Pokud proměnná promenna neexistuje, pak
+      si vypíše "vyraz", jinak se vypíše $promenna. 
+   e) ${premenna:cislo}: Vypíše obsah proměnné premenna od znaku na pozici cislo. (cisluje se od nuly)
+   f) ${premenna:cislo:cislo2}: Vypíše obsah proměnné premenna od znaku na pozici cislo do znaku na pozici cislo2. (cisluje se od nuly)
+   g) ${premenna/vyraz/text}: V proměnný premenna nahradí první výskyt řetězce vyraz řetězcem text.
+   h) ${premenna//vyraz/text} V proměnný premenna nahradí všechny výskyty řetězce vyraz řetězcem text.
+   i) Ne všude, dá se použít třeba $@ pro vypsání všech argumentů.
