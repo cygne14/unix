@@ -1,6 +1,4 @@
-1. Protože příkaz shift funguje jen když N (posunutí o N pozic) je menší nebo
-   rovno počtu argumentů a v posledním případě tam zbyly jen 2, tedy shift 
-   nemohl posunout o 3.
+1. Protože příkaz shift funguje jen když N (posunutí o N pozic) je menší nebo rovno počtu argumentů a v posledním případě tam zbyly jen 2, tedy shift nemohl posunout o 3.
 
 2. a) $#: V proměnné $# je uložen počet argumentů.
    b) ${promenna}: Délka proměnné $promenna.
