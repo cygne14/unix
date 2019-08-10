@@ -1,0 +1,30 @@
+#!/bin/bash
+
+vstup="$( tac )"
+radky=$( echo "$vstup" | wc -l)
+
+if [ $# -eq 0 ]; then 
+  for (( i=1; i<=$radky; i++ )); do
+    echo $( echo "$vstup" | head -n $i | tail -n 1 )
+  done
+
+
+elif [ $1 == "-n" ] && [ $# > 1 ]; then
+  cast=$(( "$radky" / $2 ))
+  zbytek=$(( $radky - $cast * $2))
+
+  for (( i=$2; i<=$radky; i+=$2 )); do
+ 
+    for (( k=0; k<$2; k++ )); do
+      echo $( echo "$vstup" | head -n $(( $i - $k )) | tail -n 1 )
+    done
+
+  done
+ 
+  if [ $zbytek != 0 ]; then
+    for (( k=$radky; k>$(( $cast * $2 )); k-- )); do
+      echo $( echo "$vstup" | head -n $k | tail -n 1 )
+    done
+  fi
+
+fi
