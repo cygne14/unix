@@ -1,6 +1,6 @@
 #!/bin/sed -f
 
-#:vsechno
+:vsechno
 
 s/\([^0-9]*\)0\+ *+ *0\+\([^0-9]*\)/\10\2/g  #vyraz z nulama 
 
@@ -16,11 +16,17 @@ s/\([^0-9]*\)0\+ *+ *0\+\([^0-9]*\)/\10\2/g  #vyraz z nulama
   s/\([0-9][0-9]*\) \([0-9]\)/,\1 \2/
 
 
-  #zatim jen kdyz jsou cisla stejne dlouha
-  #z 12 34 se udela 2413
+  #z ,12 34 se udela 2413,
   :zpet
 
-  s/,\([0-9]*\)\([0-9]\) \([0-9]*\)\([0-9]\)/\2\4,\1 \3/  
+    #za carkou jsou alespon dve cifry z kazdyho cisla
+    s/,\([0-9]*\)\([0-9]\) \([0-9]*\)\([0-9]\)/\2\4,\1 \3/
+
+    #za carkou je treba:   ,55_
+    /,[0-9]\+ $/ { s/,\([0-9]\+\) /,\1 0/ }
+
+    #za carkou je treba:   ,_ 55
+    /, [0-9]\+$/ {s/, \([0-9]\+\)/,0 \1/ }
 
   t zpet
 
@@ -68,7 +74,7 @@ s/\([^0-9]*\)0\+ *+ *0\+\([^0-9]*\)/\10\2/g  #vyraz z nulama
   /:[0-9][0-9]*/ { s/\([0-9]*\),\([0-9]\)\([0-9]\):\([0-9][0-9]\)/\2\1,\3\4:/ }
 
   #za dvojteckou jsou dalsi cifry a mezi , a : neni cislo (pripad 10+10, 20+10, ... scita se 0+0)
-  /,:[0-9]\+/ { p;  s/\([0-9]*\),:\([0-9]\)\([0-9]\)/0\1,0\2\3:/ ;p }
+  /,:[0-9]\+/ { s/\([0-9]*\),:\([0-9]\)\([0-9]\)/0\1,0\2\3:/ }
 
   #za dvojteckou nejsou cifry
   #pred dvojteckou je 1
@@ -93,5 +99,5 @@ s/\([^0-9]*\)0\+ *+ *0\+\([^0-9]*\)/\10\2/g  #vyraz z nulama
 
 }
 
-#t vsechno
+t vsechno
 
