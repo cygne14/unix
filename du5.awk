@@ -10,7 +10,7 @@ BEGIN {
 #tedy adresa bude vzdycky v $1
 
 
-#pokud jsou pred href i jiny atributy
+#pokud jsou pred href i jiny atributy tak se odstrani
 {
   sub(/[aA]([\n\t ]+[a-zA-z]+[\n\t ]*=[\n\t ]*\"[^"]*\")+[\t\n ]+[hH][rR][eE][fF]/,"a href",$1) 
 }
