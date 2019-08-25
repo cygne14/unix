@@ -8,13 +8,15 @@ BEGIN {
 }
 #tedy adresa bude vzdycky v $2
 
-if ($2 ~ /a href=['"][^"']*['"]/) {
-  sub(/a href=["']/, "", $2)
-  sub(/["']/, "", $2)
+{
+  if ($2 ~ /a href=['"][^"']*['"]/) {
+    sub(/a href=["']/, "", $2)
+    sub(/["']/, "", $2)
 
-  gsub("&quot;", "\"", $2)  
-  gsub("&lt;", "<", $2)
-  gsub("&gt;", ">", $2)
+    gsub("&quot;", "\"", $2)  
+    gsub("&lt;", "<", $2)
+    gsub("&gt;", ">", $2)
   
-  print $2
-}
+    print $2
+  }
+} 
