@@ -1,18 +1,20 @@
 #!/bin/awk -f
 
 BEGIN {
-  #nastaveni separatoru zaznamu na znak < 
+  #nastaveni separatoru zaznamu na znak <
+  #nastaveni separatoru pole na znak > 
   RS="<"
+  FS=">"
 }
+#tedy adresa bude vzdycky v $2
 
-/^[Aa] / {
-  for (i=2; i<=NF; ++i) {
-    if ($i ~ /^href=/) {
-      l=substr($i, 6)
-      gsub("&quot;", "\"", l)
-      gsub("&lt;", "<", l)
-      gsub("&gt;", ">", l)
-      print l
-    }
-  }  
+if ($2 ~ /a href=['"][^"']*['"]/) {
+  sub(/a href=["']/, "", $2)
+  sub(/["']/, "", $2)
+
+  gsub("&quot;", "\"", $2)  
+  gsub("&lt;", "<", $2)
+  gsub("&gt;", ">", $2)
+  
+  print $2
 }
