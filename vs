@@ -1,6 +1,5 @@
-<a href=              
-         "adresa">
-<a
-
-      href      ='adre&lt;sa'>
-<a href="adresa a mezery">
+<a style="blaaaa" href=odkaz>
+<a href="sialeny &lt;odkaz&gt; &amp;amp; lol &quot;">
+<a style="qwertzui" href="odkaz">
+<a      HREF      ='adre&lt;sa'>
+<a hreF="adresa a mezery">
