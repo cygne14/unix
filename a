@@ -6,17 +6,20 @@ BEGIN {
   RS="<"
   FS=">"
 }
-#tedy adresa bude vzdycky v $2
+#tedy adresa bude vzdycky v $1
+
+#odstrani nadbytecni mezery a novy radky
+gsub(/^a[[:space:]]+href[[:space:]]*=[[:space:]]*/, "a href=", $1)
 
 {
-  if ($2 ~ /a href=['"][^"']*['"]/) {
-    sub(/a href=["']/, "", $2)
-    sub(/["']/, "", $2)
+  if ($1 ~ /a href=['"][^"']*['"]/) {
+    sub(/a href=["']/, "", $1)
+    sub(/["']/, "", $1)
 
-    gsub("&quot;", "\"", $2)  
-    gsub("&lt;", "<", $2)
+    gsub("&quot;", "\"", $1)  
+    gsub("&lt;", "<", $1)
     gsub("&gt;", ">", $2)
   
-    print $2
+    print $1
   }
 } 
