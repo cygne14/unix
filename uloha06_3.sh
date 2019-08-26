@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#nazev skupiny ma splnovat [_a-z][-0-9_a-z]*\$?
-skupiny="$( cat $1 | sed 's/\([_a-z][-0-9_a-z]*\$?\):x:[0-9]\+:[a-zA-Z]\+,/\1,/' | awk 'BEGIN { FS="," } { print(NF,$1) }' )"
+#nazev skupiny ma splnovat [_a-z][-0-9_a-z]*\$\{0,1\}
+skupiny="$( cat $1 | sed 's/\([_a-z][-0-9_a-z]*\$\{0,1\}\):x:[0-9]\+:[a-z]\+,/\1,/' | awk 'BEGIN { FS="," } { print(NF,$1) }' )"
 
 #setridi podle poctu lidi ve skupine, od nejvetsiho cisla
 skupiny="$( echo "$skupiny" | sort -gr)"
