@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#vypise rekurzivne vsechny soubory
+#vzdycky vypise jaky adresar a dvojtecku
+soubory="$( ls -R )"
+
+#odstrani se radky kde je z jakyho adresare se vypisuje
+soubory="$( echo $soubory | awk '
+  { 
+    {  
+      split($0,p," ")
+      i=1
+      p[1]="" #je tam jen .:
+      while (p[i] != "") { 
+        if (p[i] ~ /\//) { p[i]="" } #aby tam byli jen nazvy souboru
+        i++ 
+      } 
+      p[i]="@" #pole bude konci @
+
+      i=1
+      if (p[1] ~ [^a-z]) { 
+        p[1]=tolower(p[1])
+        j=2
+        while ((p[j]!=p[1] && p[j]!="@") { j++ }
+        if (p[j]!="@")  #dva soubory by se jmenovali stejne
+          { exit 2  } 
+        else  { print(p[1]) }
+      } 
+    } 
+  }' )" 
+    
