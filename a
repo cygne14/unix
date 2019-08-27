@@ -15,14 +15,14 @@ soubory="$( echo $soubory | awk '
       } 
       p[i]="@" #pole bude konci @
 
-      i=1
-      if (p[1] ~ /[^a-z]/) { 
-        p[1]=tolower(p[1])
-        j=2
-        while (p[j]!=p[1] && p[j]!="@") { j++ }
+      i=2
+      if (p[2] ~ /[^a-z]/) { 
+        p[2]=tolower(p[2])
+        j=3
+        while (p[j]!=p[2] && p[j]!="@") { j++ }
         if (p[j]!="@")  #dva soubory by se jmenovali stejne
           { exit 2  } 
-        else  { print(p[1]) }
+        else  { print(p[2]) }
       } 
   }' )" 
     
