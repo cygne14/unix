@@ -7,7 +7,6 @@ soubory="$( ls -R )"
 #odstrani se radky kde je z jakyho adresare se vypisuje
 soubory="$( echo $soubory | awk '
   { 
-    {  
       split($0,p," ")
       i=1
       p[1]="" #je tam jen .:
@@ -18,7 +17,7 @@ soubory="$( echo $soubory | awk '
       p[i]="@" #pole bude konci @
 
       i=1
-      if (p[1] ~ [^a-z]) { 
+      if (p[1] ~ /[^a-z]/) { 
         p[1]=tolower(p[1])
         j=2
         while ((p[j]!=p[1] && p[j]!="@") { j++ }
@@ -26,6 +25,5 @@ soubory="$( echo $soubory | awk '
           { exit 2  } 
         else  { print(p[1]) }
       } 
-    } 
   }' )" 
     
